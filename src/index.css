@@ -1,0 +1,176 @@
+/* src/index.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 20px 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+}
+
+.app {
+  width: 900px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+h1, h3, h4 {
+  color: #333;
+  font-weight: 400;
+}
+
+.entity-list ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.entity-list li {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entity-list li:hover {
+  background-color: #ececec;
+}
+
+.entity-list button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.entity-list button:hover {
+  background-color: #155a9a;
+}
+
+.entity-form input, .entity-form select {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app .edit-button {
+  background-color: #ffa726; /* Amber/Orange color */
+}
+
+.app .edit-button:hover {
+  background-color: #fb8c00; /* Slightly darker shade on hover */
+}
+
+.entity-form button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-inline: auto;
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 90%;
+}
+
+.entity-form button:hover {
+  background-color: #155a9a;
+}
+
+.app .button-wrapper {
+  display: flex;
+
+  gap: 10px
+}
+
+.app .cancel-button {
+  background-color: #d32f2f;
+}
+
+.app .cancel-button:hover {
+  background-color: #9a1f1f;
+}
+
+.field-definition ul,
+.relationship-definition ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.field-definition li,
+.relationship-definition li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.field-definition button,
+.relationship-definition button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.field-definition button:hover,
+.relationship-definition button:hover {
+    background-color: #155a9a;
+}
+
+
+/* Export Button Styling */
+.app .export-button {
+  margin-top: 10px;
+  background-color: #4caf50; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.app .export-button:hover {
+  background-color: #388e3c;
+}
+
+
+.app .schema-preview {
+  padding: 10px;
+}
