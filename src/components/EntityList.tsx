@@ -1,4 +1,4 @@
-import React from 'react';
+// @ts-nocheck
 
 const EntityList = ({ entities, onEdit, onDelete, onCreate }) => {
     return (

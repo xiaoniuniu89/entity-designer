@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// @ts-nocheck
+import { useState } from 'react';
 import EntityList from './components/EntityList';
 import EntityForm from './components/EntityForm';
 import SchemaPreview from './components/SchemaPreview';

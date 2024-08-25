@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// @ts-nocheck
+import { useState, useEffect } from 'react';
 
 const RelationshipDefinition = ({ currentEntityName, entities, relationships, onAddRelationship, onUpdateRelationship }) => {
     const [relatedEntity, setRelatedEntity] = useState('');

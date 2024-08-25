@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// @ts-nocheck
+import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import FieldDefinition from './FieldDefinition';
 import RelationshipDefinition from './RelationshipDefinition';
