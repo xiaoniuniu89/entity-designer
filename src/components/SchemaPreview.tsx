@@ -22,6 +22,9 @@ const SchemaPreview = ({ entities }) => {
                             message: "Invalid date format"
                         });
                         break;
+                    case 'relation':
+                        fieldSchema = z.number().int().positive(); // Assuming a positive integer for foreign keys
+                        break;
                     default:
                         fieldSchema = z.any();
                 }
@@ -30,8 +33,51 @@ const SchemaPreview = ({ entities }) => {
                 return acc;
             }, {});
 
+            // Automatically add an id field if it's not defined
+            if (!fieldSchemas.hasOwnProperty('id')) {
+                fieldSchemas.id = z.number().int().positive().optional();
+            }
+
+            // Create the Zod schema and convert it to JSON schema
             const schema = z.object(fieldSchemas).strict();
-            return { name: entity.name, jsonSchema: zodToJsonSchema(schema, entity.name) };
+            const jsonSchema = zodToJsonSchema(schema, entity.name);
+
+            // Ensure properties and definitions exist in the schema
+            if (!jsonSchema.properties) {
+                jsonSchema.properties = {};
+            }
+            if (!jsonSchema.definitions) {
+                jsonSchema.definitions = {};
+            }
+
+            // Handle relationships
+            entity.relationships?.forEach(relationship => {
+                const relatedEntityName = relationship.relatedEntity;
+                
+                // Ensure the related entity definition exists
+                if (!jsonSchema.definitions[relatedEntityName]) {
+                    jsonSchema.definitions[relatedEntityName] = {
+                        type: "object",
+                        properties: {
+                            id: { type: "integer" }
+                        }
+                    };
+                }
+
+                // Add the relationship field
+                jsonSchema.properties[`${relatedEntityName}_id`] = {
+                    $ref: `#/definitions/${relatedEntityName}`,
+                    description: `Reference to the ${relatedEntityName}`
+                };
+
+                // Add to required fields if necessary
+                if (relationship.required) {
+                    jsonSchema.required = jsonSchema.required || [];
+                    jsonSchema.required.push(`${relatedEntityName}_id`);
+                }
+            });
+
+            return { name: entity.name, jsonSchema };
         });
 
         return entitySchemas;
@@ -58,7 +104,6 @@ const SchemaPreview = ({ entities }) => {
             <button className='export-button' onClick={() => exportSchema(jsonSchemas)}>Export Schema</button>
         </div>
     );
-    
 };
 
 const exportSchema = (jsonSchemas) => {
